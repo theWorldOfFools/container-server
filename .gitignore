@@ -1,0 +1,4 @@
+.env
+vendor/
+ws/node_modules/
+*.log

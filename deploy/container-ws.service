@@ -1,0 +1,18 @@
+[Unit]
+Description=Container Server WS terminal bridge
+After=network.target docker.service postgresql.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=container-ws
+Group=docker
+WorkingDirectory=/var/www/html/container-server/ws
+ExecStart=/usr/bin/node /var/www/html/container-server/ws/terminal-server.js
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+# .env di parent dir dibaca otomatis oleh terminal-server.js (DB_*, DOCKER_SOCKET, WS_PORT)
+
+[Install]
+WantedBy=multi-user.target
